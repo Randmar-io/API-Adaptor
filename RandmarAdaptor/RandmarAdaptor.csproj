@@ -9,9 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="5.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="RestSharp" Version="106.13.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.26.1" />
   </ItemGroup>
 
 </Project>

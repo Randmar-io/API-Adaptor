@@ -15,7 +15,7 @@ namespace RandmarAdaptor
 
     private static async Task<string> AuthenticateAppAsync()
     {
-      string loginUrl = "https://auth.randmar.com";
+      string loginUrl = "https://auth.randmar.io";
 
       var client = new HttpClient();
       var discoveryResponse = await client.GetDiscoveryDocumentAsync(loginUrl);
@@ -56,33 +56,33 @@ namespace RandmarAdaptor
 
     public static async Task<T> Get<T>(string apiPath)
     {
-      return await Execute<T>(Method.GET, apiPath);
+      return await Execute<T>(Method.Get, apiPath);
     }
 
     public static async Task<T> Post<T>(string apiPath, dynamic body = null)
     {
-      return await Execute<T>(Method.POST, apiPath, body);
+      return await Execute<T>(Method.Post, apiPath, body);
     }
 
     public static async Task<T> Put<T>(string apiPath, dynamic body = null)
     {
-      return await Execute<T>(Method.PUT, apiPath, body);
+      return await Execute<T>(Method.Put, apiPath, body);
     }
 
     public static async Task<T> Delete<T>(string apiPath)
     {
-      return await Execute<T>(Method.DELETE, apiPath);
+      return await Execute<T>(Method.Delete, apiPath);
     }
 
     private static async Task<T> Execute<T>(Method method, string apiPath, dynamic body = null)
     {
-      var restClient = new RestClient(@"https://api.randmar.com/V4");
+      var restClient = new RestClient(@"https://api.randmar.io/V4");
       var request = new RestRequest(apiPath, method);
 
       request.AddParameter("Authorization", string.Format("Bearer " + ApiToken), ParameterType.HttpHeader);
-      restClient.Timeout = 0;
+      request.Timeout = 0;
 
-      if (body != null) request.AddJsonBody(body);
+      if (body != null) request.AddBody((object)body, "application/json");
 
       var response = await restClient.ExecuteAsync(request);
       if ((int)response.StatusCode < 200 || (int)response.StatusCode > 300)
@@ -96,7 +96,7 @@ namespace RandmarAdaptor
 
     public static T GetNonAsync<T>(string apiPath)
     {
-      return Execute<T>(Method.GET, apiPath).GetAwaiter().GetResult();
+      return Execute<T>(Method.Get, apiPath).GetAwaiter().GetResult();
     }
 
     internal static string ResellerId
