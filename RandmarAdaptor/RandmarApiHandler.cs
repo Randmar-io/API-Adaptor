@@ -25,8 +25,8 @@ namespace RandmarAdaptor
       var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
       {
         Address = discoveryResponse.TokenEndpoint,
-        ClientId = "<Your API Name>",
-        ClientSecret = "<Your API Key>",
+        ClientId = "test",
+        ClientSecret = "ZwDWwvxGg+ofVNWA63xAobYs12qc9NvCMYv3yHqKU6sAyunhQtbcOaUQMcJzpLTi8lRJdlkH0jwQSMf8pQYf4Ek=",
         Scope = "api"
       });
 

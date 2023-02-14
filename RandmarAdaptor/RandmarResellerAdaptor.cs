@@ -110,5 +110,26 @@ namespace RandmarAdaptor
     {
       return await RandmarApiHandler.Get<dynamic>($"Reseller/{resellerId}/Account/General");
     }
+
+    public async Task<dynamic> GetManufacturer(int manufacturerId)
+    {
+      return await RandmarApiHandler.Get<dynamic>($"Reseller/{resellerId}/Manufacturers/{manufacturerId}");
+    }
+
+    public async Task<IEnumerable<dynamic>> GetManufacturers()
+    {
+        return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Manufacturers");
+    }
+
+    public async Task<IEnumerable<dynamic>> GetReceivings()
+    {
+        return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/Receivings");
+    }
+
+    public async Task<IEnumerable<dynamic>> GetInstantRebates()
+    {
+        return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/InstantRebates");
+    }
+
   }
 }

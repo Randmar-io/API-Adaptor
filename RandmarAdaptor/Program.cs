@@ -14,6 +14,18 @@ namespace RandmarAdaptor
       Console.WriteLine($"Reseller Id: {(string)resellerInformation.ResellerId}");
       Console.WriteLine($"Reseller Name: {(string)resellerInformation.Name}");
 
+      var manufacturerProfile = await randmarResellerAdaptor.GetManufacturer(2010);
+      Console.WriteLine($"Manufacturer Name: {(string)manufacturerProfile.PublicName}");
+
+      var manufacturers = await randmarResellerAdaptor.GetManufacturers();
+      Console.WriteLine($"Manufacturers count: {manufacturers.Count()}");
+
+      var receivings = await randmarResellerAdaptor.GetReceivings();
+      Console.WriteLine($"Receivings count: {receivings.Count()}");
+      
+      var instantRebates = await randmarResellerAdaptor.GetInstantRebates();
+      Console.WriteLine($"Instant Rebates count: {instantRebates.Count()}");
+
       var orders = await randmarResellerAdaptor.GetOrders();
       Console.WriteLine($"Order count: {orders.Count()}");
 
@@ -38,6 +50,7 @@ namespace RandmarAdaptor
         var tn450 = await randmarResellerAdaptor.GetProduct((string)product.Content.MPN);
         Console.WriteLine($"UPC for {(string)tn450.MPN} is  {(string)tn450.UPC}");
       }
+
     }
   }
 }
