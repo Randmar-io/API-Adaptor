@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
 namespace RandmarAdaptor
 {
@@ -129,6 +131,14 @@ namespace RandmarAdaptor
     public async Task<IEnumerable<dynamic>> GetInstantRebates()
     {
         return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/InstantRebates");
+    }
+
+    public async void DownloadPriceList()
+    {
+      var content = await RandmarApiHandler.Post<dynamic>($"Reseller/{resellerId}/Report/Universal/File");
+      var filename = Path.Combine("C:\\Users\\Abdullah\\Documents\\Randmar\\RandmarAdaptor-C#\\", "UniversalPriceList");
+
+      File.WriteAllBytes(filename, content);
     }
 
   }

@@ -14,6 +14,8 @@ namespace RandmarAdaptor
       Console.WriteLine($"Reseller Id: {(string)resellerInformation.ResellerId}");
       Console.WriteLine($"Reseller Name: {(string)resellerInformation.Name}");
 
+      randmarResellerAdaptor.DownloadPriceList();
+
       var manufacturerProfile = await randmarResellerAdaptor.GetManufacturer(2010);
       Console.WriteLine($"Manufacturer Name: {(string)manufacturerProfile.PublicName}");
 
