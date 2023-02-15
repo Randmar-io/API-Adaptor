@@ -120,25 +120,22 @@ namespace RandmarAdaptor
 
     public async Task<IEnumerable<dynamic>> GetManufacturers()
     {
-        return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Manufacturers");
+      return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Manufacturers");
     }
 
     public async Task<IEnumerable<dynamic>> GetReceivings()
     {
-        return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/Receivings");
+      return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/Receivings");
     }
 
     public async Task<IEnumerable<dynamic>> GetInstantRebates()
     {
-        return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/InstantRebates");
+      return await RandmarApiHandler.Get<IEnumerable<dynamic>>($"Reseller/{resellerId}/Products/InstantRebates");
     }
 
-    public async void DownloadPriceList()
+    public async Task<dynamic> DownloadPriceList()
     {
-      var content = await RandmarApiHandler.Post<dynamic>($"Reseller/{resellerId}/Report/Universal/File");
-      var filename = Path.Combine("C:\\Users\\Abdullah\\Documents\\Randmar\\RandmarAdaptor-C#\\", "UniversalPriceList");
-
-      File.WriteAllBytes(filename, content);
+      return await RandmarApiHandler.Post<byte[]>($"Reseller/{resellerId}/Report/Universal/File");
     }
 
   }

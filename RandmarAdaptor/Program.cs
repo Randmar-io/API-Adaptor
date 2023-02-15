@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -6,6 +7,7 @@ namespace RandmarAdaptor
 {
   class Program
   {
+    internal static string DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
     static async Task Main()
     {
       var randmarResellerAdaptor = new RandmarResellerAdaptor();
@@ -13,8 +15,6 @@ namespace RandmarAdaptor
 
       Console.WriteLine($"Reseller Id: {(string)resellerInformation.ResellerId}");
       Console.WriteLine($"Reseller Name: {(string)resellerInformation.Name}");
-
-      randmarResellerAdaptor.DownloadPriceList();
 
       var manufacturerProfile = await randmarResellerAdaptor.GetManufacturer(2010);
       Console.WriteLine($"Manufacturer Name: {(string)manufacturerProfile.PublicName}");
@@ -52,6 +52,12 @@ namespace RandmarAdaptor
         var tn450 = await randmarResellerAdaptor.GetProduct((string)product.Content.MPN);
         Console.WriteLine($"UPC for {(string)tn450.MPN} is  {(string)tn450.UPC}");
       }
+
+      Console.WriteLine("Downloading price list...");
+      var content = await randmarResellerAdaptor.DownloadPriceList();
+      var filename = Path.Combine(Program.DefaultPath, "UniversalPriceList.xlsx");
+      File.WriteAllBytes(filename, content);
+      Console.WriteLine("Price list downloaded");
 
     }
   }
