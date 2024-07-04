@@ -25,9 +25,8 @@ namespace RandmarAdaptor
       var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
       {
         Address = discoveryResponse.TokenEndpoint,
-        ClientId = "<Your API Name>",
-        ClientSecret = "<Your API Key>",
-        Scope = "api"
+        ClientId = "<enter your client id here>",
+        ClientSecret = "<enter your client secret here>",
       });
 
       if (tokenResponse.IsError) throw new ApplicationException();
@@ -86,7 +85,7 @@ namespace RandmarAdaptor
 
       var response = await restClient.ExecuteAsync(request);
       if ((int)response.StatusCode < 200 || (int)response.StatusCode > 300)
-        throw new ArgumentNullException(response.Content);
+        throw new ArgumentNullException(response.Content); // make sure you have entered your credentials above if this is thrown.
 
       if (typeof(T) == typeof(string)) return (T)(object)response.Content;
       else if (typeof(T) == typeof(byte[])) return (T)(object)response.RawBytes;

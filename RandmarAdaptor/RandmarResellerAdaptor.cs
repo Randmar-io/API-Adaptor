@@ -115,7 +115,7 @@ namespace RandmarAdaptor
 
     public async Task<dynamic> GetManufacturer(int manufacturerId)
     {
-      return await RandmarApiHandler.Get<dynamic>($"Reseller/{resellerId}/Manufacturers/{manufacturerId}");
+      return await RandmarApiHandler.Get<dynamic>($"Reseller/{resellerId}/Manufacturer/{manufacturerId}");
     }
 
     public async Task<IEnumerable<dynamic>> GetManufacturers()
